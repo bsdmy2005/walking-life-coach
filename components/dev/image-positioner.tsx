@@ -1,12 +1,11 @@
 "use client"
 
-import { useCallback, useEffect, useState } from "react"
+import { useState } from "react"
 import { Check, ImageIcon, X } from "lucide-react"
 
 /**
- * Dev tool: slide each image up/down (vertical object-position) live, per design.
- * Controlled by the chooser (positions persisted to disk per variant). Reapplies
- * as images mount / variants switch so framing sticks across restarts.
+ * Dev tool UI: slide each image up/down (vertical object-position) per design.
+ * Editing only — the chooser applies positions (dev + prod) and persists them.
  */
 
 function basename(src: string): string | null {
@@ -42,22 +41,6 @@ export function ImagePositioner({
       /* ignore */
     }
   }
-
-  const applyAll = useCallback(() => {
-    document.querySelectorAll<HTMLImageElement>("main img").forEach(img => {
-      const key = basename(img.currentSrc || img.src)
-      img.style.objectPosition =
-        key && key in images ? `center ${images[key]}%` : ""
-    })
-  }, [images])
-
-  // Reapply whenever positions/variant change, and as new images mount.
-  useEffect(() => {
-    applyAll()
-    const obs = new MutationObserver(() => applyAll())
-    obs.observe(document.body, { childList: true, subtree: true })
-    return () => obs.disconnect()
-  }, [applyAll, variant])
 
   function scan() {
     const seen = new Map<string, string>()

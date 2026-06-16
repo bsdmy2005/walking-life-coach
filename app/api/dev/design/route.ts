@@ -10,7 +10,7 @@ import { NextResponse } from "next/server"
 
 export const runtime = "nodejs"
 
-const FILE = path.join(process.cwd(), "design.dev.json")
+const FILE = path.join(process.cwd(), "design-settings.json")
 const isDev = process.env.NODE_ENV !== "production"
 
 async function read(): Promise<Record<string, unknown>> {

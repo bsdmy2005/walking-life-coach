@@ -41,8 +41,5 @@ npm-debug.log*
 /*.zip
 /*.pdf
 
-# Dev design tool settings
-design.dev.json
-
 # Design source / scratch (large, local-only)
 _design/

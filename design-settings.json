@@ -1,0 +1,25 @@
+{
+  "defaultVariant": "original",
+  "variants": {
+    "aurora": {
+      "colors": { "--accent": "#a93af2", "--foreground": "#000000" },
+      "images": {
+        "coach-2.jpg": 29,
+        "journey.jpg": 48,
+        "cta.jpg": 36,
+        "hero.jpg": 17
+      }
+    },
+    "kinfolk": { "images": { "coach-2.jpg": 27 } },
+    "poster": {
+      "images": { "hero.jpg": 24, "coach-3.jpg": 60, "coach-2.jpg": 20 },
+      "colors": {
+        "--background": "#ebe9e6",
+        "--primary": "#ff621f",
+        "--accent": "#ff621f"
+      }
+    },
+    "coastal": { "images": { "coach-3.jpg": 58, "coach-2.jpg": 23 } },
+    "original": { "images": { "hero.jpg": 25 } }
+  }
+}
