@@ -1,0 +1,153 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  The Walking Life Coach — brand design tokens (from the Canva deck).
+  Two registers: warm earth palette (cream/terracotta/gold/olive/navy)
+  and editorial B&W (ink). Fonts are injected by next/font in app/layout.tsx.
+*/
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand palette (raw, for direct use: bg-terracotta, text-olive, etc.) */
+  --color-cream: var(--cream);
+  --color-terracotta: var(--terracotta);
+  --color-gold: var(--gold);
+  --color-olive: var(--olive);
+  --color-navy: var(--navy);
+  --color-ink: var(--ink);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-script: var(--font-script), cursive;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* Brand raw colours (eyeballed from the deck — tweak against final assets) */
+  --cream: #f1ebdd;
+  --terracotta: #bc5630;
+  --gold: #d2a12b;
+  --olive: #5b6233;
+  --navy: #1e2a38;
+  --ink: #111111;
+
+  /* Light theme = warm cream/navy editorial */
+  --background: #f1ebdd;
+  --foreground: #1e2a38;
+  --card: #faf6ee;
+  --card-foreground: #1e2a38;
+  --popover: #faf6ee;
+  --popover-foreground: #1e2a38;
+  --primary: #bc5630;
+  --primary-foreground: #f1ebdd;
+  --secondary: #5b6233;
+  --secondary-foreground: #f1ebdd;
+  --muted: #e7dfcd;
+  --muted-foreground: #6b6453;
+  --accent: #d2a12b;
+  --accent-foreground: #1e2a38;
+  --destructive: #b3261e;
+  --destructive-foreground: #f1ebdd;
+  --border: #ddd3bf;
+  --input: #ddd3bf;
+  --ring: #bc5630;
+
+  --sidebar: #faf6ee;
+  --sidebar-foreground: #1e2a38;
+  --sidebar-primary: #bc5630;
+  --sidebar-primary-foreground: #f1ebdd;
+  --sidebar-accent: #e7dfcd;
+  --sidebar-accent-foreground: #1e2a38;
+  --sidebar-border: #ddd3bf;
+  --sidebar-ring: #bc5630;
+}
+
+.dark {
+  /* Dark theme = editorial B&W (the deck's Problem/Insight/Solution slides) */
+  --background: #111111;
+  --foreground: #f1ebdd;
+  --card: #1a1a1a;
+  --card-foreground: #f1ebdd;
+  --popover: #1a1a1a;
+  --popover-foreground: #f1ebdd;
+  --primary: #d97a4e;
+  --primary-foreground: #111111;
+  --secondary: #7a8347;
+  --secondary-foreground: #111111;
+  --muted: #222222;
+  --muted-foreground: #a8a293;
+  --accent: #d2a12b;
+  --accent-foreground: #111111;
+  --destructive: #e5484d;
+  --destructive-foreground: #111111;
+  --border: #2a2a2a;
+  --input: #2a2a2a;
+  --ring: #d97a4e;
+
+  --sidebar: #1a1a1a;
+  --sidebar-foreground: #f1ebdd;
+  --sidebar-primary: #d97a4e;
+  --sidebar-primary-foreground: #111111;
+  --sidebar-accent: #222222;
+  --sidebar-accent-foreground: #f1ebdd;
+  --sidebar-border: #2a2a2a;
+  --sidebar-ring: #d97a4e;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+    outline-color: color-mix(in oklch, var(--ring) 50%, transparent);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+  /* Editorial display headings use the serif by default */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+  }
+}
+
+/* Handwritten script accent ("Start your journey", "...literally!") */
+.font-script {
+  font-family: var(--font-script);
+}

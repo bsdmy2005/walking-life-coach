@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Next.js
+/.next/
+/out/
+/build
+next-env.d.ts
+*.tsbuildinfo
+
+# Env
+.env
+.env*.local
+
+# Clerk
+/.clerk/
+
+# Vercel
+.vercel
+
+# Misc / OS
+.DS_Store
+Thumbs.db
+*.pem
+*.log
+npm-debug.log*
+.cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Local Claude settings
+.claude/settings.local.json
+
+# Large design source files (kept locally, not in git)
+/*.zip
+/*.pdf
+
+# Dev design tool settings
+design.dev.json
+
+# Design source / scratch (large, local-only)
+_design/
