@@ -19,12 +19,22 @@ export default async function AdminPage() {
     redirect("/admin/login")
   }
 
-  const [regs, buys] = db
-    ? await Promise.all([
+  type Reg = typeof registrations.$inferSelect
+  type Buy = typeof purchases.$inferSelect
+  let regs: Reg[] = []
+  let buys: Buy[] = []
+  let dbError: string | null = null
+
+  if (db) {
+    try {
+      ;[regs, buys] = await Promise.all([
         db.select().from(registrations).orderBy(desc(registrations.createdAt)),
         db.select().from(purchases).orderBy(desc(purchases.createdAt))
       ])
-    : [[], []]
+    } catch (e) {
+      dbError = e instanceof Error ? e.message : String(e)
+    }
+  }
 
   const paid = buys.filter(b => b.status === "paid")
   const revenue = paid.reduce((sum, b) => sum + b.amount, 0)
@@ -35,6 +45,22 @@ export default async function AdminPage() {
         <h1 className="font-serif text-4xl">Admin</h1>
         <AdminLogout />
       </div>
+
+      {dbError && (
+        <div className="border-destructive/40 bg-destructive/10 text-destructive mt-6 rounded-lg border p-4 text-sm">
+          <p className="font-medium">Database error</p>
+          <p className="mt-1 break-all font-mono text-xs">{dbError}</p>
+          <p className="text-muted-foreground mt-2">
+            Check that <code>DATABASE_URL</code> is set correctly on the server
+            (no trailing spaces; use Render&rsquo;s Internal Database URL).
+          </p>
+        </div>
+      )}
+      {!db && (
+        <div className="border-destructive/40 bg-destructive/10 text-destructive mt-6 rounded-lg border p-4 text-sm">
+          <code>DATABASE_URL</code> is not set on the server.
+        </div>
+      )}
 
       <div className="mt-6 grid grid-cols-3 gap-4">
         <Stat label="Registered" value={regs.length} />
